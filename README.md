@@ -166,7 +166,7 @@ Here's an overview of the project's file structure:
 - **`/styles`**: TailwindCSS setup and custom styles are kept here, with Tailwind configured to scan all relevant files for classes.
 
 ---
-
+[FileStructure-AdditionalInfo]
 
 ![FileStructure-info](https://github.com/user-attachments/assets/edd7ab1f-418a-40df-849c-e3cb7b08ac52)
 
