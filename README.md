@@ -138,17 +138,14 @@ Currently, two official plugins are available:
 Here's an overview of the project's file structure:
 
 
-![file-structre(1)]
-(<Screenshot 2024-09-21 181407.png>)
+![file-structre(1)](https://github.com/user-attachments/assets/22aa7ca8-037e-4bd9-a3ef-3c30bdf7bf68)
+
+![file-structre(2)](https://github.com/user-attachments/assets/98f3a65e-a850-45d5-bc30-c38ba458f467)
+
+![file-structre(3)]
 
 
-![file-structre(2)]
 
-
-(<Screenshot 2024-09-21 181425.png>)
-
-
-![file-structre(3)](<Screenshot 2024-09-21 181519.png>)
 
 
 
@@ -163,6 +160,5 @@ Here's an overview of the project's file structure:
 ---
 
 
-![FileStructure-info]
+![FileStructure-info](https://github.com/user-attachments/assets/edd7ab1f-418a-40df-849c-e3cb7b08ac52)
 
-(<Screenshot 2024-09-22 113541.png>)
