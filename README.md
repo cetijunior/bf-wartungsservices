@@ -148,9 +148,7 @@ Here's an overview of the project's file structure:
 (<Screenshot 2024-09-21 181425.png>)
 
 
-![file-structre(3)]
-
-(<Screenshot 2024-09-21 181519.png>)
+![file-structre(3)](<Screenshot 2024-09-21 181519.png>)
 
 
 
