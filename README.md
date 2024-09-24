@@ -58,7 +58,7 @@
 
 
 
-![Screenshot 2024-09-24 024006](https://github.com/user-attachments/assets/65ea6571-4eb6-422e-b2e8-cf472b07ac0c)
+![image](https://github.com/user-attachments/assets/482b205f-c9d3-44e7-8eb0-00d4accbddce)
 
 
 ![Screenshot 2024-09-24 024028](https://github.com/user-attachments/assets/9cfaaa1d-d208-4526-8c02-b8306992746e)
