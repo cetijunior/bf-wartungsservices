@@ -69,3 +69,6 @@
 
 ![Screenshot 2024-09-24 024056](https://github.com/user-attachments/assets/2ee138e6-4068-4b6c-a91c-0d777f925c70)
 
+
+
+FIX Burger Menu go to when not in homepage X

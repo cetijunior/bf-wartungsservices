@@ -16,7 +16,7 @@ const testimonials = [
     {
         quote: "Amazing service and very professional! Highly recommend.",
         name: "John Smith",
-        image: "/public/assets/images/client2.jpg",
+        image: "/assets/images/client2.jpg",
     },
     {
         quote: "Great attention to detail and excellent customer service.",

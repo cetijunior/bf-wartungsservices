@@ -13,13 +13,13 @@ const ServicesSection = () => {
     const services = [
         { id: 1, title: 'Einkaufen', description: 'Wir erledigen Ihre Einkäufe im Supermarkt, Bauhaus, etc.', image: '/assets/images/Einkaufen.png' },
         { id: 2, title: 'Fensterputzen', description: 'Professionelle Reinigung Ihrer Fenster, auch im Wintergarten.', image: '/public/assets/images/Fensterputzen.png' },
-        { id: 3, title: 'Kleine Reparaturarbeiten', description: 'Kleine Reparaturen rund um Ihr Haus.', image: '/public/assets/images/Reparaturarbeiten.png' },
-        { id: 4, title: 'Wohnungsauflösung', description: 'Unterstützung bei der Wohnungsauflösung und Entrümpelung.', image: '/public/assets/images/Wohnungsauflösung.png' },
-        { id: 5, title: 'Entrümpelung', description: 'Entrümpelung von Häusern, Garagen, Kellern und mehr.', image: '/public/assets/images/Entrümpelung.png' },
-        { id: 6, title: 'Hausreinigung', description: 'Komplette Hausreinigung für ein sauberes Zuhause.', image: '/public/assets/images/Hausreinigung.png' },
-        { id: 7, title: 'Winterdienst', description: 'Winterdienst inklusive Schneeräumen und Streuen.', image: '/public/assets/images/Winterdienst.png' },
-        { id: 8, title: 'Montagearbeiten', description: 'Montage von Möbeln und anderen Gegenständen.', image: '/public/assets/images/Montagearbeiten.png' },
-        { id: 9, title: 'Gartenarbeiten', description: 'Pflege Ihres Gartens und Ihrer Grünflächen.', image: '/public/assets/images/Gartenarbeiten.png' },
+        { id: 3, title: 'Kleine Reparaturarbeiten', description: 'Kleine Reparaturen rund um Ihr Haus.', image: '/assets/images/Reparaturarbeiten.png' },
+        { id: 4, title: 'Wohnungsauflösung', description: 'Unterstützung bei der Wohnungsauflösung und Entrümpelung.', image: '/assets/images/Wohnungsauflösung.png' },
+        { id: 5, title: 'Entrümpelung', description: 'Entrümpelung von Häusern, Garagen, Kellern und mehr.', image: '/assets/images/Entrümpelung.png' },
+        { id: 6, title: 'Hausreinigung', description: 'Komplette Hausreinigung für ein sauberes Zuhause.', image: '/assets/images/Hausreinigung.png' },
+        { id: 7, title: 'Winterdienst', description: 'Winterdienst inklusive Schneeräumen und Streuen.', image: '/assets/images/Winterdienst.png' },
+        { id: 8, title: 'Montagearbeiten', description: 'Montage von Möbeln und anderen Gegenständen.', image: '/assets/images/Montagearbeiten.png' },
+        { id: 9, title: 'Gartenarbeiten', description: 'Pflege Ihres Gartens und Ihrer Grünflächen.', image: '/assets/images/Gartenarbeiten.png' },
     ];
 
     const handleServiceClick = (id) => {
