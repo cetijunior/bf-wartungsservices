@@ -8,8 +8,9 @@ const ContactSection = () => {
             <h2 className="text-3xl font-bold text-[#44403d] mb-6 text-center">Contact Us</h2>
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Contact Form */}
-                <div className="bg-white p-8 rounded-lg shadow-lg">
+                <div className="bg-white p-8 hover:scale-105 lg:hover:mx-6 rounded-lg shadow-lg">
                     <form className="space-y-6">
+                        <h2 className="lg:text-3xl text-2xl lg:text-start text-center font-bold text-[#44403d]">Send us an Email!</h2>
                         <input
                             type="text"
                             placeholder="Your Name"
@@ -32,8 +33,8 @@ const ContactSection = () => {
                 </div>
 
                 {/* Contact Information and Map */}
-                <div className="flex flex-col space-y-8 ">
-                    <div className='flex flex-col space-y-8 px-4 items-sta'>
+                <div className="flex flex-col items-start space-y-8 ">
+                    <div className='flex flex-col space-y-8  space-x-1 items-start '>
                         <div className="flex items-center space-x-4">
                             <FaMapMarkerAlt className="text-[#e92b26] w-6 h-6" />
                             <p className="text-gray-700">Amalienstraße 75, • 90763 Fürth</p>

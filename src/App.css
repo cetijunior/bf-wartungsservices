@@ -20,3 +20,11 @@ html,
 body {
   overflow-y: auto;
 }
+
+/* App.css */
+*,
+*::before,
+*::after {
+  transition: all 300ms ease-in-out;
+  /* Global transition setting */
+}

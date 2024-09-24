@@ -1,5 +1,10 @@
 // src/pages/landing/PricingSection.jsx
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination, Autoplay } from 'swiper/modules'; // Import Swiper modules
+import PriceCard from '../../components/prices/PricesCard'; // Adjust the import path as needed
 
 const PricingSection = () => {
     const pricingPlans = [
@@ -37,45 +42,30 @@ const PricingSection = () => {
         <section id="pricing" className="py-20 bg-gray-100">
             <div className="container mx-auto text-center px-6">
                 <h2 className="text-3xl font-bold mb-12 text-[#44403d]">Our Pricing</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                {/* Swiper for small and medium screens */}
+                <div className="block md:hidden">
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        pagination={{ clickable: true }}
+                        autoplay={{ delay: 3000 }}
+                        loop
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        className="w-full max-w-md mx-auto"
+                    >
+                        {pricingPlans.map((plan, index) => (
+                            <SwiperSlide key={index}>
+                                <PriceCard plan={plan} onClick={scrollToContact} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+
+                {/* Grid layout for large screens */}
+                <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {pricingPlans.map((plan, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center justify-between h-full"
-                        >
-                            <div className="flex flex-col items-center mb-6 lg:mb-8">
-                                <h3 className="text-2xl font-bold mb-4 text-[#e92b26]">{plan.title}</h3>
-                                <p className="text-4xl font-bold mb-4 text-[#44403d]">{plan.price}</p>
-                                <ul className="text-gray-700 mb-6 space-y-2">
-                                    {plan.features.map((feature, i) => (
-                                        <li key={i} className="flex items-center">
-                                            <svg
-                                                className="w-5 h-5 text-green-500 mr-2"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M5 13l4 4L19 7"
-                                                ></path>
-                                            </svg>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                                {plan.note && <p className="text-sm text-gray-500 mb-4">{plan.note}</p>}
-                            </div>
-                            <button
-                                onClick={scrollToContact}
-                                className="mt-auto w-full px-6 py-2 bg-[#44403d] text-white rounded-full hover:bg-gray-700 transition duration-300 lg:mt-0"
-                            >
-                                {plan.buttonText}
-                            </button>
-                        </div>
+                        <PriceCard key={index} plan={plan} onClick={scrollToContact} />
                     ))}
                 </div>
             </div>
