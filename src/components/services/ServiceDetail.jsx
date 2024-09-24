@@ -7,14 +7,14 @@ import { Pagination, Autoplay } from 'swiper/modules';
 
 const serviceData = [
     { id: 1, title: 'Einkaufen', description: 'Detailed description about Einkaufen...', images: ['/assets/images/Einkaufen.png', '/assets/images/Einkaufen2.png'] },
-    { id: 2, title: 'Fensterputzen', description: 'Detailed description about Fensterputzen...', images: ['/public/assets/images/Fensterputzen.png', '/public/assets/images/Fensterputzen2.png'] },
-    { id: 3, title: 'Kleine Reparaturarbeiten', description: 'Detailed description about Kleine Reparaturarbeiten...', images: ['/public/assets/images/Reparaturarbeiten.png', '/public/assets/images/Reparaturarbeiten2.png'] },
-    { id: 4, title: 'Wohnungsauflösung', description: 'Detailed description about Wohnungsauflösung...', images: ['/public/assets/images/Wohnungsauflösung.png', '/public/assets/images/Wohnungsauflösung2.png'] },
-    { id: 5, title: 'Entrümpelung', description: 'Detailed description about Entrümpelung...', images: ['/public/assets/images/Entrümpelung.png', '/public/assets/images/Entrümpelung2.png'] },
-    { id: 6, title: 'Hausreinigung', description: 'Detailed description about Hausreinigung...', images: ['/public/assets/images/Hausreinigung.png', '/public/assets/images/Hausreinigung2.png'] },
-    { id: 7, title: 'Winterdienst', description: 'Detailed description about Winterdienst...', images: ['/public/assets/images/Winterdienst.png', '/public/assets/images/Winterdienst2.png'] },
-    { id: 8, title: 'Montagearbeiten', description: 'Detailed description about Montagearbeiten...', images: ['/public/assets/images/Montagearbeiten.png', '/public/assets/images/Montagearbeiten2.png'] },
-    { id: 9, title: 'Gartenarbeiten', description: 'Detailed description about Gartenarbeiten...', images: ['/public/assets/images/Gartenarbeiten.png', '/public/assets/images/Gartenarbeiten2.png'] },
+    { id: 2, title: 'Fensterputzen', description: 'Detailed description about Fensterputzen...', images: ['/assets/images/Fensterputzen.png', '/assets/images/Fensterputzen2.png'] },
+    { id: 3, title: 'Kleine Reparaturarbeiten', description: 'Detailed description about Kleine Reparaturarbeiten...', images: ['/assets/images/Reparaturarbeiten.png', '/assets/images/Reparaturarbeiten2.png'] },
+    { id: 4, title: 'Wohnungsauflösung', description: 'Detailed description about Wohnungsauflösung...', images: ['/assets/images/Wohnungsauflösung.png', '/assets/images/Wohnungsauflösung2.png'] },
+    { id: 5, title: 'Entrümpelung', description: 'Detailed description about Entrümpelung...', images: ['/assets/images/Entrümpelung.png', '/assets/images/Entrümpelung2.png'] },
+    { id: 6, title: 'Hausreinigung', description: 'Detailed description about Hausreinigung...', images: ['/assets/images/Hausreinigung.png', '/assets/images/Hausreinigung2.png'] },
+    { id: 7, title: 'Winterdienst', description: 'Detailed description about Winterdienst...', images: ['/assets/images/Winterdienst.png', '/assets/images/Winterdienst2.png'] },
+    { id: 8, title: 'Montagearbeiten', description: 'Detailed description about Montagearbeiten...', images: ['/assets/images/Montagearbeiten.png', '/assets/images/Montagearbeiten2.png'] },
+    { id: 9, title: 'Gartenarbeiten', description: 'Detailed description about Gartenarbeiten...', images: ['/assets/images/Gartenarbeiten.png', '/assets/images/Gartenarbeiten2.png'] },
 ];
 
 const ServiceDetailPage = () => {
