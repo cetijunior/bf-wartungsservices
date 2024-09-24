@@ -55,3 +55,17 @@
 ├── vite.config.js              // Vite configuration file
 ├── tailwind.config.js          // TailwindCSS setup
 └── README.md                   // Documentation for the project
+
+
+
+![Screenshot 2024-09-24 024006](https://github.com/user-attachments/assets/65ea6571-4eb6-422e-b2e8-cf472b07ac0c)
+
+
+![Screenshot 2024-09-24 024028](https://github.com/user-attachments/assets/9cfaaa1d-d208-4526-8c02-b8306992746e)
+
+
+![Screenshot 2024-09-24 024046](https://github.com/user-attachments/assets/a0b438dd-7977-4bef-bf04-12daa6150f80)
+
+
+![Screenshot 2024-09-24 024056](https://github.com/user-attachments/assets/2ee138e6-4068-4b6c-a91c-0d777f925c70)
+
