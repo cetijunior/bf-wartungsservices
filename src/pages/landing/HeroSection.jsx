@@ -27,7 +27,7 @@ const HeroSection = () => {
                         contactSection.scrollIntoView({ behavior: 'smooth' });
                     }
                 }}
-                    className="group relative w-auto md:w-1/2 md:self-center inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-[#e92b26] rounded-full overflow-hidden transition-all duration-300 ease-out hover:bg-green-600">
+                    className="group relative w-auto md:w-1/2 md:self-center inline-flex items-center hover:scale-105 justify-center px-8 py-4 text-lg font-medium text-white bg-[#e92b26] rounded-full overflow-hidden transition-all duration-300 ease-out hover:bg-green-600">
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#e92b26] to-[#44403d] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
                     <span className="relative">Get Started</span>
                 </button>

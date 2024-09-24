@@ -72,9 +72,13 @@ const Navbar = () => {
                             window.location.href = '/';
                         }
                     }}
-                    className="text-xl cursor-pointer font-bold bg-transparent border-none text-white"
+                    className="flex items-center cursor-pointer bg-transparent border-none"
                 >
-                    Landscaping Co.
+                    <img
+                        src="/assets/images/Logo.PNG"
+                        alt="Landscaping Co. Logo"
+                        className="h-10 rounded-full mr-2 transition-all duration-300 hover:animate-rotateImage"
+                    />
                 </button>
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="focus:outline-none">
