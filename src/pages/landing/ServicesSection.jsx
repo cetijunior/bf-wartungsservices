@@ -12,7 +12,7 @@ const ServicesSection = () => {
 
     const services = [
         { id: 1, title: 'Einkaufen', description: 'Wir erledigen Ihre Einkäufe im Supermarkt, Bauhaus, etc.', image: '/assets/images/Einkaufen.png' },
-        { id: 2, title: 'Fensterputzen', description: 'Professionelle Reinigung Ihrer Fenster, auch im Wintergarten.', image: '/public/assets/images/Fensterputzen.png' },
+        { id: 2, title: 'Fensterputzen', description: 'Professionelle Reinigung Ihrer Fenster, auch im Wintergarten.', image: '/assets/images/Fensterputzen.png' },
         { id: 3, title: 'Kleine Reparaturarbeiten', description: 'Kleine Reparaturen rund um Ihr Haus.', image: '/assets/images/Reparaturarbeiten.png' },
         { id: 4, title: 'Wohnungsauflösung', description: 'Unterstützung bei der Wohnungsauflösung und Entrümpelung.', image: '/assets/images/Wohnungsauflösung.png' },
         { id: 5, title: 'Entrümpelung', description: 'Entrümpelung von Häusern, Garagen, Kellern und mehr.', image: '/assets/images/Entrümpelung.png' },
