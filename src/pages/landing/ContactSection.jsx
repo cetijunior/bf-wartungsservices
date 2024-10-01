@@ -1,33 +1,52 @@
 // src/pages/landing/ContactSection.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const ContactSection = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const mailtoLink = `mailto:info@bf-netzbau.de?subject=Kontaktanfrage von ${name}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nNachricht:\n${message}`)}`;
+        window.location.href = mailtoLink;
+    };
+
     return (
         <section id="contact" className="py-20 px-6 bg-gray-50">
-            <h2 className="text-3xl font-bold text-[#44403d] mb-6 text-center">Contact Us</h2>
+            <h2 className="text-3xl font-bold text-[#44403d] mb-6 text-center">Kontaktieren Sie uns</h2>
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Contact Form */}
                 <div className="bg-white p-8 hover:scale-105 lg:hover:mx-6 rounded-lg shadow-lg">
-                    <form className="space-y-6">
-                        <h2 className="lg:text-3xl text-2xl lg:text-start text-center font-bold text-[#44403d]">Send us an Email!</h2>
+                    <form className="space-y-6" onSubmit={handleSubmit}>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl text-center lg:text-start font-bold text-[#44403d]">Senden Sie uns eine E-Mail!</h2>
                         <input
                             type="text"
-                            placeholder="Your Name"
+                            placeholder="Ihr Name"
                             className="w-full p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#e92b26]"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
                         />
                         <input
                             type="email"
-                            placeholder="Your Email"
+                            placeholder="Ihre E-Mail"
                             className="w-full p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#e92b26]"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                         <textarea
-                            placeholder="Your Message"
+                            placeholder="Ihre Nachricht"
                             className="w-full p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#e92b26]"
                             rows="4"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            required
                         ></textarea>
-                        <button className="w-full py-3 bg-[#44403d] text-white font-semibold rounded hover:bg-gray-700 transition duration-300">
-                            Send Message
+                        <button type="submit" className="w-full py-3 bg-[#44403d] text-white font-semibold rounded hover:bg-gray-700 transition duration-300">
+                            Nachricht senden
                         </button>
                     </form>
                 </div>
@@ -55,11 +74,10 @@ const ContactSection = () => {
                         style={{ border: 0 }}
                         allowFullScreen=""
                         loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade" // Correct attribute
+                        referrerPolicy="no-referrer-when-downgrade"
                         className="rounded-lg shadow-lg"
                         title="Our Location"
                     ></iframe>
-
 
                     {/* Social Media Icons */}
                     <div className="flex justify-center md:justify-start space-x-6">

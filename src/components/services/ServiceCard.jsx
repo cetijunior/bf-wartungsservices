@@ -15,7 +15,7 @@ const ServiceCard = ({ service, onClick }) => {
                 </div>
                 <button
                     onClick={onClick}
-                    className="mt-4 w-full md:w-3/5 self-center transform-all duration-300 px-4 py-2 bg-[#44403d] text-white rounded hover:bg-[#e92b26] md:hover:w-full">
+                    className="mt-4 w-full md:w-3/5 self-center transform-all duration-300 px-4 py-2 bg-[#44403d] text-white rounded hover:bg-[#e92b26] md:hover:w-full text-xs sm:text-sm md:text-base">
                     Learn More
                 </button>
             </div>

@@ -76,7 +76,7 @@ const Navbar = () => {
                 >
                     <img
                         src="/assets/images/Logo.PNG"
-                        alt="Landscaping Co. Logo"
+                        alt="BF Wartungsservice Logo"
                         className="h-10 rounded-full mr-2 transition-all duration-300 hover:animate-rotateImage"
                     />
                 </button>
@@ -96,7 +96,7 @@ const Navbar = () => {
                             onClick={() => handleNavigation('home')}
                             className="hover:underline block w-full text-left py-2 md:py-0"
                         >
-                            Home
+                            Startseite
                         </button>
                     </li>
                     <li className="relative md:static" ref={dropdownRef}>
@@ -104,7 +104,7 @@ const Navbar = () => {
                             onClick={toggleServicesDropdown}
                             className="hover:underline border-0 block w-full text-left py-2 md:py-0 flex items-center justify-between md:justify-start"
                         >
-                            Services
+                            Dienstleistungen
                             <svg
                                 className={`w-4 h-4 ml-1 transform ${isServicesDropdownOpen ? 'rotate-180' : ''} transition-transform`}
                                 fill="none"
@@ -155,7 +155,7 @@ const Navbar = () => {
                             onClick={() => handleNavigation('testimonials')}
                             className="hover:underline block w-full text-left py-2 md:py-0"
                         >
-                            Testimonials
+                            Kundenstimmen
                         </button>
                     </li>
                     <li>
@@ -163,7 +163,7 @@ const Navbar = () => {
                             onClick={() => handleNavigation('pricing')}
                             className="hover:underline block w-full text-left py-2 md:py-0"
                         >
-                            Pricing
+                            Preise
                         </button>
                     </li>
                     <li>
@@ -171,7 +171,7 @@ const Navbar = () => {
                             onClick={() => handleNavigation('contact')}
                             className="hover:underline block w-full text-left py-2 md:py-0"
                         >
-                            Contact Us
+                            Kontakt
                         </button>
                     </li>
                 </ul>

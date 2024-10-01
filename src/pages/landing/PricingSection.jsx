@@ -9,25 +9,30 @@ import PriceCard from '../../components/prices/PricesCard'; // Adjust the import
 const PricingSection = () => {
     const pricingPlans = [
         {
-            title: 'Basic Package',
+            title: 'Basis-Paket',
             price: '30€ / Stunde',
             features: ['Hausreinigung', 'Kleine Reparaturarbeiten', 'Winterdienst'],
             note: '* Pro benötigte Person',
-            buttonText: 'Get Started',
+            buttonText: 'Jetzt Buchen',
         },
         {
-            title: 'Standard Package',
+            title: 'Standard-Paket',
             price: '50€ / Stunde',
             features: ['Fensterputzen', 'Montagearbeiten', 'Hausmeisterservice', 'Gartenarbeiten'],
             note: '* Bei größeren Aufträgen Pauschalpreise möglich',
-            buttonText: 'Get Started',
+            buttonText: 'Jetzt Buchen',
         },
         {
-            title: 'Premium Package',
+            title: 'Premium-Paket',
             price: 'Pauschalpreis nach Absprache',
-            features: ['Wohnungsauflösung', 'Entrümpelung', 'Abbrucharbeiten'],
-            note: '',
-            buttonText: 'Contact Us',
+            features: [
+                'Wohnungsauflösung',
+                'Entrümpelung',
+                'Abbrucharbeiten',
+                'VIP Services'
+            ],
+            note: '* Alle Leistungen aus Basis- und Standard-Paket',
+            buttonText: 'Kontaktieren Sie uns',
         },
     ];
 
@@ -41,7 +46,13 @@ const PricingSection = () => {
     return (
         <section id="pricing" className="py-20 bg-gray-100">
             <div className="container mx-auto text-center px-6">
-                <h2 className="text-3xl font-bold mb-12 text-[#44403d]">Our Pricing</h2>
+                <h2 className="text-3xl font-bold mb-12 text-[#44403d]">Unsere Preise</h2>
+
+                {/* Add this new div for the payment information */}
+                <div className="mb-8 text-lg text-[#44403d]">
+                    <p>Bezahlung erfolgt bequem nach Abschluss der Arbeiten.</p>
+                    <p className="text-sm mt-2">* Wir akzeptieren Barzahlung und Überweisung.</p>
+                </div>
 
                 {/* Swiper for small and medium screens */}
                 <div className="block md:hidden">
