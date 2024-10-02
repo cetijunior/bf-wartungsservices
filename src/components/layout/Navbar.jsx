@@ -63,7 +63,7 @@ const Navbar = () => {
 
     return (
         <nav className="bg-[#e92b26] text-white p-4 fixed w-full z-50 shadow-md transition duration-300">
-            <div className="container mx-auto flex flex-row justify-between items-center">
+            <div className="container mx-auto flex justify-between items-center">
                 <button
                     onClick={() => {
                         if (window.location.pathname === '/') {
@@ -91,18 +91,18 @@ const Navbar = () => {
                     className={`md:flex md:space-x-4 absolute md:relative top-full left-0 right-0 bg-[#44403d] md:bg-transparent transition-all duration-300 ease-in-out ${isMenuOpen ? 'block' : 'hidden'
                         } md:block p-4 md:p-0 mt-0 lg:mt-0 rounded-b-lg md:rounded-none`}
                 >
-                    <li>
+                    <li className="flex justify-center">
                         <button
                             onClick={() => handleNavigation('home')}
-                            className="hover:underline block w-full text-left py-2 md:py-0"
+                            className="hover:underline block w-full text-center py-2 md:py-0"
                         >
                             Startseite
                         </button>
                     </li>
-                    <li className="relative md:static" ref={dropdownRef}>
+                    <li className="relative md:static flex justify-center" ref={dropdownRef}>
                         <button
                             onClick={toggleServicesDropdown}
-                            className="hover:underline border-0 block w-full text-left py-2 md:py-0 flex items-center justify-between md:justify-start"
+                            className="hover:underline border-0 block w-full text-center py-2 md:py-0 flex items-center justify-center"
                         >
                             Dienstleistungen
                             <svg
@@ -116,7 +116,7 @@ const Navbar = () => {
                             </svg>
                         </button>
                         {isServicesDropdownOpen && (
-                            <ul className="absolute items-start p-2 left-0 mt-0 sm:mt-6 bg-[#e92b26] lg:w-auto w-auto md:w-[400px] rounded-md shadow-lg z-10 max-h-60 overflow-y-auto md:max-h-none md:grid md:grid-cols-2 gap-3">
+                            <ul className="absolute items-center p-2 left-1/2 transform -translate-x-1/2 mt-0 sm:mt-6 bg-[#e92b26] lg:w-auto w-auto md:w-[400px] rounded-md shadow-lg z-10 max-h-60 overflow-y-auto md:max-h-none md:grid md:grid-cols-2 gap-3">
                                 {[
                                     { id: 1, title: 'Einkaufen' },
                                     { id: 2, title: 'Fensterputzen' },
@@ -128,10 +128,10 @@ const Navbar = () => {
                                     { id: 8, title: 'Montagearbeiten' },
                                     { id: 9, title: 'Gartenarbeiten' },
                                 ].map((service) => (
-                                    <li key={service.id} className="py-1">
+                                    <li key={service.id} className="py-1 flex justify-center">
                                         <button
                                             onClick={() => handleServiceClick(service.id)}
-                                            className="block w-full text-left px-2 py-3 bg-[#e92b26] text-white rounded-xl hover:bg-[#d11d23] transition-all duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:scale-105 flex items-center gap-1"
+                                            className="block w-full text-center px-2 py-3 bg-[#e92b26] text-white rounded-xl hover:bg-[#d11d23] transition-all duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center gap-1"
                                         >
                                             <svg
                                                 className="w-4 h-4 text-white hidden md:block" // Hides SVGs on md and smaller screens
@@ -150,26 +150,26 @@ const Navbar = () => {
                         )}
                     </li>
 
-                    <li>
+                    <li className="flex justify-center">
                         <button
                             onClick={() => handleNavigation('testimonials')}
-                            className="hover:underline block w-full text-left py-2 md:py-0"
+                            className="hover:underline block w-full text-center py-2 md:py-0"
                         >
                             Kundenstimmen
                         </button>
                     </li>
-                    <li>
+                    <li className="flex justify-center">
                         <button
                             onClick={() => handleNavigation('pricing')}
-                            className="hover:underline block w-full text-left py-2 md:py-0"
+                            className="hover:underline block w-full text-center py-2 md:py-0"
                         >
                             Preise
                         </button>
                     </li>
-                    <li>
+                    <li className="flex justify-center">
                         <button
                             onClick={() => handleNavigation('contact')}
-                            className="hover:underline block w-full text-left py-2 md:py-0"
+                            className="hover:underline block w-full text-center py-2 md:py-0"
                         >
                             Kontakt
                         </button>

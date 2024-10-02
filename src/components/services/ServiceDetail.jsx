@@ -61,9 +61,9 @@ const ServiceDetail = () => {
         <section className="py-20 px-6 bg-gray-50">
             <div className="container mx-auto">
                 {/* Hauptdienstkarte */}
-                <div className="bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col lg:flex-row mb-16 transition-all duration-300 hover:shadow-3xl">
+                <div className="bg-white mt-5 rounded-lg shadow-2xl overflow-hidden flex flex-col lg:flex-row mb-16 transition-all duration-300 hover:shadow-3xl">
                     <div
-                        className="w-full  lg:w-1/2 h-64 sm:h-80 md:h-96 lg:h-auto bg-cover bg-bottom relative"
+                        className="lg:w-3/4 w-auto h-48 md:h-96 lg:h-auto lg:bg-contain md:bg-cover sm:bg-cover relative"
                         style={{ backgroundImage: `url(${service.images[0]})` }}
                     >
                     </div>
@@ -140,10 +140,10 @@ const ServiceDetail = () => {
                             </ul>
                         </div>
 
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
                             <button
                                 onClick={() => navigate('/')}
-                                className="p-3 bg-[#44403d] text-white rounded-full hover:bg-[#e92b26] transition-all duration-300 shadow-md"
+                                className="w-full sm:w-auto p-3 bg-[#44403d] text-white rounded-full hover:bg-[#e92b26] transition-all duration-300 shadow-md flex items-center justify-center"
                             >
                                 <FaHome size={24} />
                             </button>
@@ -157,7 +157,7 @@ const ServiceDetail = () => {
                                         }
                                     }, 100);
                                 }}
-                                className="px-6 py-3 flex flex-row items-center justify-between bg-[#e92b26] text-white text-lg rounded-full hover:bg-[#44403d] transition-all duration-300 shadow-md"
+                                className="w-full sm:w-auto px-6 py-3 flex flex-row items-center justify-center bg-[#e92b26] text-white text-lg rounded-full hover:bg-[#44403d] transition-all duration-300 shadow-md"
                             >
                                 <FaPhoneAlt className="mr-2" /> Kontakt aufnehmen
                             </button>
@@ -246,7 +246,7 @@ const ServiceDetail = () => {
                                         <img
                                             src={service.images[0]}
                                             alt={service.title}
-                                            className="w-full h-48 object-cover rounded-lg"
+                                            className="w-full h-60 lg:object-cover md:object-contain sm:object-contain rounded-lg"
                                         />
                                     </div>
                                     <h4 className="text-xl font-bold text-[#44403d] mb-2">{service.title}</h4>
