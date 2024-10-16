@@ -1,5 +1,5 @@
 // src/components/layout/Navbar.jsx
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -79,6 +79,7 @@ const Navbar = () => {
                         alt="BF Wartungsservice Logo"
                         className="h-10 rounded-full mr-2 transition-all duration-300 hover:animate-rotateImage"
                     />
+                    <p className="text-xl font-bold">BF Wartungsservice</p>
                 </button>
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="focus:outline-none">
@@ -102,7 +103,7 @@ const Navbar = () => {
                     <li className="relative md:static flex justify-center" ref={dropdownRef}>
                         <button
                             onClick={toggleServicesDropdown}
-                            className="hover:underline border-0 block w-full text-center py-2 md:py-0 flex items-center justify-center"
+                            className="hover:underline border-0 w-full text-center py-2 md:py-0 flex items-center justify-center"
                         >
                             Dienstleistungen
                             <svg
@@ -116,7 +117,7 @@ const Navbar = () => {
                             </svg>
                         </button>
                         {isServicesDropdownOpen && (
-                            <ul className="absolute items-center p-2 left-1/2 transform -translate-x-1/2 mt-0 sm:mt-6 bg-[#e92b26] lg:w-auto w-auto md:w-[400px] rounded-md shadow-lg z-10 max-h-60 overflow-y-auto md:max-h-none md:grid md:grid-cols-2 gap-3">
+                            <ul className="absolute items-center p-4 left-1/2 transform -translate-x-1/2 mt-0 sm:mt-6 bg-[#e92b26] lg:w-4/5 w-auto md:w-[400px] rounded-md shadow-lg z-10 max-h-60 overflow-y-auto md:max-h-none md:grid md:grid-cols-2 gap-3">
                                 {[
                                     { id: 1, title: 'Einkaufen' },
                                     { id: 2, title: 'Fensterputzen' },

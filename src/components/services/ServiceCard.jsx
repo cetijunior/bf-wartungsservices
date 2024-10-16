@@ -1,11 +1,12 @@
 // src/components/services/ServiceCard.jsx
-import React from 'react';
+
+import PropTypes from 'prop-types';
 
 const ServiceCard = ({ service, onClick }) => {
 
     return (
         <div
-            className="bg-white w-auto transform-all duration-300 rounded-lg hover:scale-105 hover:shadow-2xl hover:shadow-red-400 shadow-lg overflow-hidden cursor-pointer flex flex-col justify-between h-full"
+            className="bg-white w-auto transform-all duration-300 rounded-lg sm:hover:scale-105 sm:hover:shadow-2xl sm:hover:shadow-red-400 shadow-lg overflow-hidden cursor-pointer flex flex-col justify-between h-full"
         >
             <img src={service.image} alt={service.title} className="w-auto sm:w-full h-auto sm:h-40 object-top" /> {/* Angepasste Höhe */}
             <div className="p-4 flex flex-col flex-grow"> {/* Reduziertes Padding */}
@@ -22,5 +23,11 @@ const ServiceCard = ({ service, onClick }) => {
         </div>
     );
 };
+
+ServiceCard.propTypes = {
+  service: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+
 
 export default ServiceCard;

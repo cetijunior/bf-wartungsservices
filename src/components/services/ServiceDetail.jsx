@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -8,9 +8,11 @@ import { FaTimes, FaExpand, FaHome, FaPhoneAlt } from 'react-icons/fa';
 
 
 // Importiere Galeriebilder
-const galleryImages = Array.from({ length: 13 }, (_, index) =>
-    `/assets/images/gallery${index + 1}.jpg`
-);
+// const galleryImages = Array.from({ length: 13 }, (_, index) =>
+//     `/assets/images/gallery${index + 1}.jpg`
+// );
+
+
 const serviceData = [
     { id: 1, title: 'Einkaufen', description: 'Unser Einkaufsservice entlastet Sie im Alltag. Wir erledigen Ihre Einkäufe zuverlässig und pünktlich, egal ob Lebensmittel, Medikamente oder andere Besorgungen. Ideal für Senioren, Berufstätige oder Menschen mit eingeschränkter Mobilität.', images: ['/assets/images/Einkaufen.png'] },
     { id: 2, title: 'Fensterputzen', description: 'Professionelle Fensterreinigung für strahlenden Durchblick. Wir reinigen alle Arten von Fenstern, Fensterrahmen und Fensterbänke gründlich und streifenfrei. Auch für schwer erreichbare Fenster und Glasflächen geeignet.', images: ['/assets/images/Fensterputzen.png'] },
@@ -63,7 +65,7 @@ const ServiceDetail = () => {
                 {/* Hauptdienstkarte */}
                 <div className="bg-white mt-5 rounded-lg shadow-2xl overflow-hidden flex flex-col lg:flex-row mb-16 transition-all duration-300 hover:shadow-3xl">
                     <div
-                        className="lg:w-3/4 w-auto h-48 md:h-96 lg:h-auto lg:bg-contain md:bg-cover sm:bg-cover relative"
+                        className="lg:w-[900px] w-auto h-48 md:h-96 lg:h-auto lg:bg-contain md:bg-cover sm:bg-cover relative"
                         style={{ backgroundImage: `url(${service.images[0]})` }}
                     >
                     </div>

@@ -28,3 +28,22 @@ body {
   transition: all 300ms ease-in-out;
   /* Global transition setting */
 }
+
+
+.custom-swiper .swiper-pagination {
+  bottom: -3px; /* Adjust this value to move the bullets lower */
+}
+
+.custom-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #44403d; /* Customize bullet color */
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.custom-swiper .swiper-pagination-bullet-active {
+  background-color: #e92b26; /* Active bullet color */
+  opacity: 1;
+  transform: scale(1.2); /* Slightly enlarge the active bullet */
+}
