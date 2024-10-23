@@ -97,7 +97,7 @@ const Navbar = () => {
 
     return (
         <motion.nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-red-600 shadow-md' : 'bg-red-700'
+            className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-gradient-to-r from-red-900 to-red-500' : 'bg-gradient-to-r from-[#44403d] to-red-500'
                 }`}
             variants={navVariants}
             initial="initial"
