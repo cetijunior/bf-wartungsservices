@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import ServiceCard from "../../components/services/ServiceCard";
 import FlyersSection from "../../components/services/FlyerSection"; // Ensure this path is correct
+import { motion } from "framer-motion";
 
 const ServicesSection = () => {
 	const services = [
@@ -63,36 +64,55 @@ const ServicesSection = () => {
 	const navigate = useNavigate();
 
 	const handleServiceClick = (id) => {
-		navigate(`/services/${id}`); // This should correctly navigate to the service detail page
+		navigate(`/services/${id}`);
 	};
+
 	return (
-		<section id="services" className="pt-20 pb-10 px-6 bg-gray-100">
+		<motion.section
+			id="services"
+			className="pt-20 pb-10 px-6 bg-transparent"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 1 }}
+		>
 			<div className="container mx-auto text-center lg:text-left">
-				<h2 className="text-3xl text-center font-bold mb-10 text-[#44403d]">
+				<motion.h2
+					className="text-3xl font-bold mb-10 text-[#44403d]"
+					initial={{ y: -50 }}
+					animate={{ y: 0 }}
+					transition={{ duration: 0.5 }}
+				>
 					Unsere Dienstleistungen
-				</h2>
+				</motion.h2>
 				{/* Flex container to align flyers on the left and services on the right */}
 				<div className="flex flex-col lg:flex-row justify-evenly items-start gap-8">
 					{/* Flyers Section - left side */}
-					<div className="w-full self-cen lg:w-1/2">
+					<motion.div
+						className="w-full lg:hidden"
+						initial={{ x: -100 }}
+						animate={{ x: 0 }}
+						transition={{ duration: 0.7 }}
+					>
 						<FlyersSection />
-					</div>
-					{/* bullets  */}
+					</motion.div>
 					{/* Services Section - right side */}
-					<div className="w-full lg:w-1/2">
-						{/* Swiper for small screens, Grid for medium and larger screens */}
+					<motion.div
+						className="w-full lg:w-2/2"
+						initial={{ x: 100 }}
+						animate={{ x: 0 }}
+						transition={{ duration: 0.7 }}
+					>
+						{/* Swiper for small screens */}
 						<div className="block md:hidden h-full">
 							<Swiper
 								modules={[Pagination, Autoplay]}
 								autoplay={{
-									delay: 3000, // Auto-scroll delay in milliseconds
-									disableOnInteraction: false, // Continue autoplay after user interaction
+									delay: 3000,
+									disableOnInteraction: false,
 								}}
 								pagination={{
 									clickable: true,
 									dynamicBullets: true,
-									bulletClass: "swiper-pagination-bullet", // Default Swiper bullet class
-									bulletActiveClass: "swiper-pagination-bullet-active", // Active bullet class
 								}}
 								spaceBetween={60}
 								loop={true}
@@ -109,22 +129,30 @@ const ServicesSection = () => {
 								))}
 							</Swiper>
 						</div>
-
-						{/* Improved Grid layout for medium and larger screens */}
-						<div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-4">
-							{services.map((service) => (
-								<ServiceCard
+						{/* Grid layout for medium and larger screens */}
+						<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-8 lg:gap-6">
+							{services.map((service, index) => (
+								<motion.div
 									key={service.id}
-									service={service}
-									onClick={() => handleServiceClick(service.id)}
-									className="transform transition duration-300 hover:scale-105 hover:shadow-lg" // Add hover effect
-								/>
+									initial={{ opacity: 0, y: 50 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{
+										duration: 0.5,
+										delay: index * 0.1,
+									}}
+									whileHover={{ scale: 1.05 }}
+								>
+									<ServiceCard
+										service={service}
+										onClick={() => handleServiceClick(service.id)}
+									/>
+								</motion.div>
 							))}
 						</div>
-					</div>
+					</motion.div>
 				</div>
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 

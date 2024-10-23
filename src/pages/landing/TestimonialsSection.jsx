@@ -1,10 +1,11 @@
 // src/pages/landing/TestimonialsSection.jsx
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/autoplay';
 import 'swiper/css/pagination';
-import { Autoplay, Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import { FaQuoteLeft } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const testimonials = [
     {
@@ -41,10 +42,9 @@ const TestimonialsSection = () => {
     return (
         <section id="testimonials" className="py-20 bg-gray-50">
             <div className="container mx-auto text-center px-6">
-                <h2 className="text-3xl font-bold mb-12 text-[#44403d]">Was unsere Kunden sagen</h2>
+                <h2 className="text-4xl font-bold mb-12 text-[#44403d]">Was unsere Kunden sagen</h2>
                 <Swiper
-                    modules={[Autoplay, Pagination]}
-                    autoplay={{ delay: 5000 }}
+                    modules={[Pagination]}
                     pagination={{ clickable: true }}
                     loop={true}
                     spaceBetween={30}
@@ -53,8 +53,15 @@ const TestimonialsSection = () => {
                 >
                     {testimonials.map((testimonial, index) => (
                         <SwiperSlide key={index}>
-                            <div className="bg-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row items-center">
-                                <img
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
+                                className="bg-white p-8 rounded-2xl shadow-lg flex flex-col md:flex-row items-center hover:shadow-2xl transition-shadow duration-300"
+                            >
+                                <motion.img
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.3 }}
                                     src={testimonial.image}
                                     alt={`${testimonial.service} für ${testimonial.name}`}
                                     className="w-full md:w-1/3 h-64 object-cover mb-4 md:mb-0 md:mr-6 rounded-lg shadow-md"
@@ -71,7 +78,7 @@ const TestimonialsSection = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

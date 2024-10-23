@@ -21,29 +21,34 @@ body {
   overflow-y: auto;
 }
 
-/* App.css */
-*,
-*::before,
-*::after {
-  transition: all 300ms ease-in-out;
-  /* Global transition setting */
-}
 
-
+/* Swiper pagination customization */
 .custom-swiper .swiper-pagination {
-  bottom: -3px; /* Adjust this value to move the bullets lower */
+  bottom: -5px;
+  /* Slight adjustment for a better fit */
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  /* Add spacing between bullets */
 }
 
 .custom-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background-color: #44403d; /* Customize bullet color */
-  opacity: 0.5;
+  width: 10px;
+  /* Slightly bigger bullet for better visibility */
+  height: 10px;
+  background-color: #44403d;
+  opacity: 0.6;
+  /* Slightly higher opacity */
   transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 50%;
+  /* Added a border-radius for a smoother look */
 }
 
 .custom-swiper .swiper-pagination-bullet-active {
-  background-color: #e92b26; /* Active bullet color */
+  background-color: #e92b26;
   opacity: 1;
-  transform: scale(1.2); /* Slightly enlarge the active bullet */
+  transform: scale(1.3);
+  /* Slightly larger active bullet for emphasis */
+  box-shadow: 0 0 8px rgba(233, 43, 38, 0.4);
+  /* Add subtle glow effect */
 }

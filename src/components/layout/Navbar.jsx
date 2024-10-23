@@ -1,183 +1,331 @@
 // src/components/layout/Navbar.jsx
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX } from 'react-icons/fi';
+import {
+    FiSun,
+    FiTool,
+    FiHome,
+    FiTrash2,
+    FiFeather,
+    FiClipboard,
+    FiScissors,
+} from 'react-icons/fi';
+import { WiSnowflakeCold } from 'react-icons/wi'; // Import snowflake from the 'wi' package
 
 const Navbar = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-    const dropdownRef = useRef(null);
     const navigate = useNavigate();
+
+    // Handle scroll to change navbar background
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // Services data
+    const services = [
+        { id: 1, title: 'Winterdienst', icon: <WiSnowflakeCold /> },
+        { id: 2, title: 'Hausreinigung', icon: <FiFeather /> },
+        { id: 3, title: 'Fensterputzen', icon: <FiSun /> },
+        { id: 4, title: 'Entrümpelung', icon: <FiTrash2 /> },
+        { id: 5, title: 'Wohnungsauflösung', icon: <FiHome /> },
+        { id: 6, title: 'Kleine Reparaturarbeiten', icon: <FiTool /> },
+        { id: 7, title: 'Montagearbeiten', icon: <FiClipboard /> },
+        { id: 8, title: 'Gartenarbeiten', icon: <FiScissors /> },
+    ];
+
+    // Framer Motion variants
+    const navVariants = {
+        initial: {
+            y: -80,
+        },
+        animate: {
+            y: 0,
+        },
+    };
+
+    const dropdownVariants = {
+        hidden: {
+            opacity: 0,
+            y: -20,
+            pointerEvents: 'none',
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            pointerEvents: 'auto',
+            transition: {
+                type: 'spring',
+                stiffness: 300,
+                damping: 20,
+            },
+        },
+    };
+
+    const handleServiceClick = (id) => {
+        navigate(`/services/${id}`);
+        setIsServicesOpen(false);
+        setIsMenuOpen(false);
+    };
 
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
-        setIsMenuOpen(false);
     };
 
     const handleNavigation = (sectionId) => {
         if (window.location.pathname !== '/') {
             navigate('/');
-            setTimeout(() => scrollToSection(sectionId), 300); // Delay scroll to ensure page has loaded
+            setIsMenuOpen(false);
+            setTimeout(() => scrollToSection(sectionId), 100); // Delay to ensure the page has loaded
         } else {
             scrollToSection(sectionId);
+            setIsMenuOpen(false);
         }
     };
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-        setIsServicesDropdownOpen(false);
-    };
-
-    const handleServiceClick = (id) => {
-        if (window.location.pathname !== '/') {
-            navigate('/');
-            setTimeout(() => navigate(`/services/${id}`), 300);
-        } else {
-            navigate(`/services/${id}`);
-        }
-        closeMenu();
-    };
-
-    const toggleServicesDropdown = () => {
-        setIsServicesDropdownOpen(!isServicesDropdownOpen);
-    };
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsServicesDropdownOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
 
     return (
-        <nav className="bg-[#e92b26] text-white p-4 fixed w-full z-50 shadow-md transition duration-300">
-            <div className="container mx-auto flex justify-between items-center">
+        <motion.nav
+            className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-red-600 shadow-md' : 'bg-red-700'
+                }`}
+            variants={navVariants}
+            initial="initial"
+            animate="animate"
+        >
+            <div className="container mx-auto flex items-center justify-between px-4 py-3">
+                {/* Logo */}
                 <button
                     onClick={() => {
                         if (window.location.pathname === '/') {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         } else {
-                            window.location.href = '/';
+                            navigate('/');
                         }
+                        setIsMenuOpen(false);
                     }}
-                    className="flex items-center cursor-pointer bg-transparent border-none"
+                    className="flex items-center outline-none cursor-pointer bg-transparent border-none focus:outline-none"
                 >
                     <img
                         src="/assets/images/Logo.PNG"
                         alt="BF Wartungsservice Logo"
-                        className="h-10 rounded-full mr-2 transition-all duration-300 hover:animate-rotateImage"
+                        className="h-10 rounded-full mr-2 transition-transform duration-300 rotate-360 loop"
                     />
-                    <p className="text-xl font-bold">BF Wartungsservice</p>
+                    <p className="text-xl text-white font-bold">BF Wartungsservice</p>
                 </button>
-                <div className="md:hidden">
-                    <button onClick={toggleMenu} className="focus:outline-none">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
+
+                {/* Desktop Menu */}
+                <div className="hidden lg:flex space-x-8">
+                    <button
+                        onClick={() => {
+                            if (window.location.pathname === '/') {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            } else {
+                                navigate('/');
+                            }
+                            setIsMenuOpen(false);
+                        }}
+                        className="text-white hover:text-gray-200 transition-colors focus:outline-none"
+                    >
+                        Startseite
                     </button>
-                </div>
-                <ul
-                    className={`md:flex md:space-x-4 absolute md:relative top-full left-0 right-0 bg-[#44403d] md:bg-transparent transition-all duration-300 ease-in-out ${isMenuOpen ? 'block' : 'hidden'
-                        } md:block p-4 md:p-0 mt-0 lg:mt-0 rounded-b-lg md:rounded-none`}
-                >
-                    <li className="flex justify-center">
+                    <div className="relative">
                         <button
-                            onClick={() => handleNavigation('home')}
-                            className="hover:underline block w-full text-center py-2 md:py-0"
-                        >
-                            Startseite
-                        </button>
-                    </li>
-                    <li className="relative md:static flex justify-center" ref={dropdownRef}>
-                        <button
-                            onClick={toggleServicesDropdown}
-                            className="hover:underline border-0 w-full text-center py-2 md:py-0 flex items-center justify-center"
+                            onClick={() => setIsServicesOpen(!isServicesOpen)}
+                            className="text-white hover:text-gray-200 transition-colors flex items-center focus:outline-none"
                         >
                             Dienstleistungen
                             <svg
-                                className={`w-4 h-4 ml-1 transform ${isServicesDropdownOpen ? 'rotate-180' : ''} transition-transform`}
+                                className={`w-4 h-4 ml-1 transform transition-transform ${isServicesOpen ? 'rotate-180' : ''
+                                    }`}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M19 9l-7 7-7-7"
+                                />
                             </svg>
                         </button>
-                        {isServicesDropdownOpen && (
-                            <ul className="absolute items-center p-4 left-1/2 transform -translate-x-1/2 mt-0 sm:mt-6 bg-[#e92b26] lg:w-4/5 w-auto md:w-[400px] rounded-md shadow-lg z-10 max-h-60 overflow-y-auto md:max-h-none md:grid md:grid-cols-2 gap-3">
-                                {[
-                                    { id: 1, title: 'Einkaufen' },
-                                    { id: 2, title: 'Fensterputzen' },
-                                    { id: 3, title: 'Reparaturarbeiten' },
-                                    { id: 4, title: 'Wohnungsauflösung' },
-                                    { id: 5, title: 'Entrümpelung' },
-                                    { id: 6, title: 'Hausreinigung' },
-                                    { id: 7, title: 'Winterdienst' },
-                                    { id: 8, title: 'Montagearbeiten' },
-                                    { id: 9, title: 'Gartenarbeiten' },
-                                ].map((service) => (
-                                    <li key={service.id} className="py-1 flex justify-center">
-                                        <button
-                                            onClick={() => handleServiceClick(service.id)}
-                                            className="block w-full text-center px-2 py-3 bg-[#e92b26] text-white rounded-xl hover:bg-[#d11d23] transition-all duration-300 ease-in-out shadow-md hover:shadow-lg transform hover:scale-105 flex items-center justify-center gap-1"
-                                        >
-                                            <svg
-                                                className="w-4 h-4 text-white hidden md:block" // Hides SVGs on md and smaller screens
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7"></path>
-                                            </svg>
-                                            {service.title}
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </li>
 
-                    <li className="flex justify-center">
-                        <button
-                            onClick={() => handleNavigation('testimonials')}
-                            className="hover:underline block w-full text-center py-2 md:py-0"
-                        >
-                            Kundenstimmen
-                        </button>
-                    </li>
-                    <li className="flex justify-center">
-                        <button
-                            onClick={() => handleNavigation('pricing')}
-                            className="hover:underline block w-full text-center py-2 md:py-0"
-                        >
-                            Preise
-                        </button>
-                    </li>
-                    <li className="flex justify-center">
-                        <button
-                            onClick={() => handleNavigation('contact')}
-                            className="hover:underline block w-full text-center py-2 md:py-0"
-                        >
-                            Kontakt
-                        </button>
-                    </li>
-                </ul>
+                        {/* Mega Menu */}
+                        <AnimatePresence>
+                            {isServicesOpen && (
+                                <motion.div
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="hidden"
+                                    variants={dropdownVariants}
+                                    className="absolute left-1/2 transform -translate-x-1/2 mt-7 w-[500px] max-w-4xl bg-white shadow-lg rounded-lg p-6 z-20 overflow-auto"
+                                >
+                                    <div className="grid grid-cols-3 gap-6">
+                                        {services.map((service) => (
+                                            <motion.button
+                                                key={service.id}
+                                                onClick={() => handleServiceClick(service.id)}
+                                                className="flex flex-col items-center text-red-600 focus:outline-none"
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                transition={{ type: 'spring', stiffness: 300 }}
+                                            >
+                                                <motion.div
+                                                    className="text-4xl mb-2"
+                                                    whileHover={{ rotate: 10 }}
+                                                    transition={{ type: 'spring', stiffness: 300 }}
+                                                >
+                                                    {service.icon}
+                                                </motion.div>
+                                                <span className="text-sm text-center">{service.title}</span>
+                                            </motion.button>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                    <button
+                        onClick={() => handleNavigation('testimonials')}
+                        className="text-white hover:text-gray-200 transition-colors focus:outline-none"
+                    >
+                        Kundenstimmen
+                    </button>
+                    <button
+                        onClick={() => handleNavigation('pricing')}
+                        className="text-white hover:text-gray-200 transition-colors focus:outline-none"
+                    >
+                        Preise
+                    </button>
+                    <button
+                        onClick={() => handleNavigation('contact')}
+                        className="text-white hover:text-gray-200 transition-colors focus:outline-none"
+                    >
+                        Kontakt
+                    </button>
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className="lg:hidden text-white focus:outline-none"
+                >
+                    {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                </button>
             </div>
-        </nav>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: 'auto' }}
+                        exit={{ height: 0 }}
+                        className="bg-red-600 lg:hidden overflow-hidden"
+                    >
+                        <nav className="flex flex-col px-4 pb-4">
+                            <button
+                                onClick={() => {
+                                    if (window.location.pathname === '/') {
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    } else {
+                                        navigate('/');
+                                    }
+                                    setIsMenuOpen(false);
+                                }}
+                                className="text-white py-2 text-left focus:outline-none"
+                            >
+                                Startseite
+                            </button>
+                            <button
+                                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                                className="text-white py-2 flex items-center justify-between focus:outline-none"
+                            >
+                                Dienstleistungen
+                                <svg
+                                    className={`w-4 h-4 ml-1 transform transition-transform ${isServicesOpen ? 'rotate-180' : ''
+                                        }`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M19 9l-7 7-7-7"
+                                    />
+                                </svg>
+                            </button>
+                            {/* Mobile Dropdown */}
+                            <AnimatePresence>
+                                {isServicesOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="flex flex-col pl-4"
+                                    >
+                                        {services.map((service) => (
+                                            <button
+                                                key={service.id}
+                                                onClick={() => {
+                                                    handleServiceClick(service.id);
+                                                    setIsServicesOpen(false);
+                                                    setIsMenuOpen(false);
+                                                }}
+                                                className="text-white py-2 flex items-center focus:outline-none"
+                                            >
+                                                <span className="mr-2">{service.icon}</span>
+                                                {service.title}
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                            <button
+                                onClick={() => {
+                                    handleNavigation('testimonials');
+                                    setIsMenuOpen(false);
+                                }}
+                                className="text-white py-2 text-left focus:outline-none"
+                            >
+                                Kundenstimmen
+                            </button>
+                            <button
+                                onClick={() => {
+                                    handleNavigation('pricing');
+                                    setIsMenuOpen(false);
+                                }}
+                                className="text-white py-2 text-left focus:outline-none"
+                            >
+                                Preise
+                            </button>
+                            <button
+                                onClick={() => {
+                                    handleNavigation('contact');
+                                    setIsMenuOpen(false);
+                                }}
+                                className="text-white py-2 text-left focus:outline-none"
+                            >
+                                Kontakt
+                            </button>
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.nav>
     );
 };
 

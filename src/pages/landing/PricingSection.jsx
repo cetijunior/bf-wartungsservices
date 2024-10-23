@@ -1,9 +1,11 @@
 // src/pages/landing/PricingSection.jsx
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules"; // Import Swiper modules
+import { Pagination } from "swiper/modules"; // Import Swiper modules
 import PriceCard from "../../components/prices/PricesCard"; // Adjust the import path as needed
+import { motion } from "framer-motion";
 
 const PricingSection = () => {
 	const pricingPlans = [
@@ -50,12 +52,11 @@ const PricingSection = () => {
 	return (
 		<section id="pricing" className="py-20 bg-gray-100">
 			<div className="container mx-auto text-center px-6">
-				<h2 className="text-3xl font-bold mb-12 text-[#44403d]">
+				<h2 className="text-4xl font-bold mb-12 text-[#44403d]">
 					Unsere Preise
 				</h2>
 
-				{/* Add this new div for the payment information */}
-				<div className="mb-8 text-lg text-[#44403d]">
+				<div className="mb-12 text-lg text-[#44403d]">
 					<p>Bezahlung erfolgt bequem nach Abschluss der Arbeiten.</p>
 					<p className="text-sm mt-2">
 						* Wir akzeptieren Barzahlung und Überweisung.
@@ -65,10 +66,8 @@ const PricingSection = () => {
 				{/* Swiper for small and medium screens */}
 				<div className="block md:hidden">
 					<Swiper
-						modules={[Pagination, Autoplay]}
+						modules={[Pagination]}
 						pagination={{ clickable: true }}
-						autoplay={{ delay: 3000 }}
-						loop
 						spaceBetween={20}
 						slidesPerView={1}
 						className="w-full max-w-md mx-auto"

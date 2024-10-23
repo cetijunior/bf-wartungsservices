@@ -5,7 +5,7 @@ const HeroSection = () => {
 		<section
 			id="home"
 			className="h-screen bg-cover bg-center flex items-center justify-center relative overflow-hidden"
-			style={{ backgroundImage: "url(/assets/images/hero.jpg)" }}
+			style={{ backgroundImage: "url(/assets/images/gallery11.jpg)" }}
 		>
 			<div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>
 			<div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center md:items-start justify-center h-full">

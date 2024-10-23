@@ -1,14 +1,19 @@
 // src/components/pricing/PriceCard.jsx
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const PriceCard = ({ plan, onClick }) => {
     return (
-        <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-between h-full transition-transform duration-300 hover:scale-105">
+        <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 250, damping: 20 }}
+            className="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center justify-between h-full"
+        >
             {/* Title Section */}
             <h3 className="text-2xl font-bold mb-4 text-[#e92b26]">{plan.title}</h3>
 
-            {/* Price Section with hover effect */}
-            <p className="text-4xl font-bold mb-4 text-[#44403d] transition-all duration-300 hover:text-[#e92b26]">
+            {/* Price Section */}
+            <p className="text-4xl font-bold mb-6 text-[#44403d]">
                 {plan.price}
             </p>
 
@@ -36,17 +41,18 @@ const PriceCard = ({ plan, onClick }) => {
             </ul>
 
             {/* Note Section */}
-            {plan.note && <p className="text-sm text-gray-500 mb-4">{plan.note}</p>}
+            {plan.note && <p className="text-sm text-gray-500 mb-6 text-center">{plan.note}</p>}
 
             {/* Button Section */}
-            <button
+            <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={onClick}
-                className="group relative mt-auto w-3/5 self-center px-4 py-2  text-white rounded-full bg-[#e92b26] hover:w-full transition-all duration-300"
+                className="mt-auto w-full py-3 bg-[#e92b26] text-white font-semibold rounded-full hover:bg-[#44403d] transition-colors duration-300"
             >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-br rounded-full from-[#e92b26] to-[#44403d] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
-                <span className="relative">{plan.buttonText}</span>
-            </button>
-        </div>
+                {plan.buttonText}
+            </motion.button>
+        </motion.div>
     );
 };
 
