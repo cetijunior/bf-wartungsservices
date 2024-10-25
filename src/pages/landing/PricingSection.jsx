@@ -3,8 +3,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules"; // Import Swiper modules
-import PriceCard from "../../components/prices/PricesCard"; // Adjust the import path as needed
+import { Pagination } from "swiper/modules";
+import PriceCard from "../../components/prices/PricesCard";
 import { motion } from "framer-motion";
 
 const PricingSection = () => {
@@ -50,8 +50,13 @@ const PricingSection = () => {
 	};
 
 	return (
-		<section id="pricing" className="py-20 bg-gray-100">
-			<div className="container mx-auto text-center px-6">
+		<section id="pricing" className="py-20  ">
+			<motion.div
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.8 }}
+				className="container mx-auto text-center px-6"
+			>
 				<h2 className="text-4xl font-bold mb-12 text-[#44403d]">
 					Unsere Preise
 				</h2>
@@ -74,19 +79,35 @@ const PricingSection = () => {
 					>
 						{pricingPlans.map((plan, index) => (
 							<SwiperSlide key={index}>
-								<PriceCard plan={plan} onClick={scrollToContact} />
+								<motion.div
+									whileHover={{ scale: 1.05 }}
+									transition={{ type: "spring", stiffness: 300, damping: 20 }}
+								>
+									<PriceCard plan={plan} onClick={scrollToContact} />
+								</motion.div>
 							</SwiperSlide>
 						))}
 					</Swiper>
 				</div>
 
 				{/* Grid layout for large screens */}
-				<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<motion.div
+					initial={{ opacity: 0, scale: 0.95 }}
+					whileInView={{ opacity: 1, scale: 1 }}
+					transition={{ duration: 0.8, delay: 0.2 }}
+					className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+				>
 					{pricingPlans.map((plan, index) => (
-						<PriceCard key={index} plan={plan} onClick={scrollToContact} />
+						<motion.div
+							key={index}
+							whileHover={{ scale: 1.05 }}
+							transition={{ type: "spring", stiffness: 300, damping: 20 }}
+						>
+							<PriceCard plan={plan} onClick={scrollToContact} />
+						</motion.div>
 					))}
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</section>
 	);
 };

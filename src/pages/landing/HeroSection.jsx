@@ -4,7 +4,7 @@ const HeroSection = () => {
 	return (
 		<section
 			id="home"
-			className="h-screen bg-cover bg-center flex items-center justify-center relative overflow-hidden"
+			className="h-screen z-10 bg-cover bg-center flex items-center justify-center relative overflow-hidden"
 			style={{ backgroundImage: "url(/assets/images/gallery11.jpg)" }}
 		>
 			<div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60"></div>

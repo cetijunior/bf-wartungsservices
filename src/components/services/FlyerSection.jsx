@@ -10,7 +10,7 @@ const FlyersSection = () => {
 
 	return (
 		<section id="flyers" className="pb-10">
-			<div className="container text-center">
+			<div className="container z-20  text-center">
 				<img className="rounded-xl" src="/assets/images/40.png" alt="Flyer 2" />
 				{/*
                 <Swiper

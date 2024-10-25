@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Grid } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { FaTimes, FaExpand, FaHome, FaPhoneAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import "swiper/css";
@@ -92,13 +92,13 @@ const completedJobs = [
 		title: "Gartenpflege",
 		description:
 			"Umfassende Gartenpflege einschließlich Unkrautjäten, Pflanzen und allgemeiner Instandhaltung für einen makellosen Außenbereich.",
-		images: ["/assets/images/gallery6.jpg", "/assets/images/gallery10.jpg"],
+		images: ["/assets/images/gallery10.jpg", "/assets/images/gallery10.jpg"],
 	},
 	{
 		title: "Heckenschnitt",
 		description:
 			"Präzises Formen und Beschneiden von Hecken zur Verbesserung der Landschaftsästhetik und Förderung eines gesunden Wachstums.",
-		images: ["/assets/images/gallery3.jpg", "/assets/images/gallery8.jpg"],
+		images: ["/assets/images/gallery8.jpg", "/assets/images/gallery3.jpg"],
 	},
 	{
 		title: "Rasenmähen",
@@ -122,7 +122,7 @@ const completedJobs = [
 		title: "Hochdruckreinigung",
 		description:
 			"Hochdruckreinigung von Außenflächen zur Entfernung von Schmutz, Dreck und Flecken, um das ursprüngliche Erscheinungsbild wiederherzustellen.",
-		images: ["/assets/images/gallery7.jpg", "/assets/images/gallery11.jpg"],
+		images: ["/assets/images/gallery11.jpg", "/assets/images/gallery7.jpg"],
 	},
 ];
 
@@ -142,7 +142,7 @@ const ServiceDetail = () => {
 	if (!service) return <p>Laden...</p>;
 
 	const handleServiceClick = (serviceId) => {
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		window.scrollTo({ top: 0, behavior: "smooth" });
 		navigate(`/services/${serviceId}`, { replace: true });
 	};
 
@@ -154,9 +154,8 @@ const ServiceDetail = () => {
 		setFullViewImage(null);
 	};
 
-
 	return (
-		<section className="py-20 px-6 bg-gray-50">
+		<section className="py-20 px-6 ">
 			<div className="container mx-auto">
 				{/* Main Service Card */}
 				<motion.div
@@ -166,12 +165,14 @@ const ServiceDetail = () => {
 					className="bg-white mt-5 rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row mb-16"
 				>
 					<div
-						className="lg:w-1/2 h-64 md:h-96 bg-cover bg-center"
+						className="lg:w-1/2 lg:h-auto h-52 w-full md:h-96 bg-cover bg-center"
 						style={{ backgroundImage: `url(${service.images[0]})` }}
 					></div>
 
-					<div className="w-full lg:w-1/2 p-10 flex flex-col justify-between">
-						<h2 className="text-3xl font-bold text-[#e92b26] mb-6">{service.title}</h2>
+					<div className="w-full lg:w-1/2 p-4 sm:p-10 flex flex-col justify-between">
+						<h2 className="text-3xl font-bold text-[#e92b26] mb-6">
+							{service.title}
+						</h2>
 						<p className="text-lg text-gray-700 mb-8 leading-relaxed">
 							{service.description}
 						</p>
@@ -252,16 +253,7 @@ const ServiceDetail = () => {
 							</ul>
 						</div>
 
-
 						<div className="flex flex-col sm:flex-row justify-start sm:justify-between items-center space-y-4 sm:space-y-0">
-							<motion.button
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-								onClick={() => navigate("/")}
-								className="w-full sm:w-auto px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-[#e92b26] transition-all duration-300 shadow-md flex items-center justify-center"
-							>
-								<FaHome className="mr-2" /> Startseite
-							</motion.button>
 							<motion.button
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
@@ -278,6 +270,14 @@ const ServiceDetail = () => {
 							>
 								<FaPhoneAlt className="mr-2" /> Kontakt aufnehmen
 							</motion.button>
+							<motion.button
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								onClick={() => navigate("/")}
+								className="w-full sm:w-auto px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-[#e92b26] transition-all duration-300 shadow-md flex items-center justify-center"
+							>
+								<FaHome className="mr-2" /> Startseite
+							</motion.button>
 						</div>
 					</div>
 				</motion.div>
@@ -291,6 +291,8 @@ const ServiceDetail = () => {
 						modules={[Pagination]}
 						pagination={{ clickable: true }}
 						spaceBetween={30}
+						autoplay={{ delay: 200 }}
+						loop={true}
 						slidesPerView={1}
 						breakpoints={{
 							640: { slidesPerView: 2 },
@@ -341,6 +343,7 @@ const ServiceDetail = () => {
 						modules={[Pagination]}
 						pagination={{ clickable: true }}
 						spaceBetween={30}
+						loop={true}
 						slidesPerView={1}
 						breakpoints={{
 							640: { slidesPerView: 2 },

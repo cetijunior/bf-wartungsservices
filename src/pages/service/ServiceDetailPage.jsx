@@ -1,12 +1,11 @@
-import ServiceDetail from '../../components/services/ServiceDetail';
+import ServiceDetail from "../../components/services/ServiceDetail";
 
 const ServiceDetailPage = () => {
-    return (
-        <div>
-            <ServiceDetail />
-        </div>
-    );
+	return (
+		<div>
+			<ServiceDetail />
+		</div>
+	);
 };
 
 export default ServiceDetailPage;
-
