@@ -75,17 +75,73 @@ const ServicesSection = () => {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 1 }}
 		>
-			<div className="container mx-auto text-center lg:text-left">
+			<div className="container mx-auto sm:text-center text-left">
 				<motion.h2
-					className="text-3xl font-bold mb-10 text-[#44403d]"
+					className="text-4xl font-bold mb-12 text-[#44403d]"
 					initial={{ y: -50 }}
 					animate={{ y: 0 }}
 					transition={{ duration: 0.5 }}
 				>
 					Unsere Dienstleistungen
 				</motion.h2>
+
+				{/* Services Section - right side */}
+				<motion.div
+					className="w-full lg:w-2/2"
+					initial={{ x: 100 }}
+					animate={{ x: 0 }}
+					transition={{ duration: 0.7 }}
+				>
+					{/* Swiper for small screens */}
+					<div className="block md:hidden h-full">
+						<Swiper
+							modules={[Pagination, Autoplay]}
+							autoplay={{
+								delay: 3000,
+								disableOnInteraction: false,
+							}}
+							pagination={{
+								clickable: true,
+								dynamicBullets: true,
+							}}
+							spaceBetween={60}
+							loop={true}
+							slidesPerView={1}
+							className="w-full custom-swiper"
+						>
+							{services.map((service) => (
+								<SwiperSlide key={service.id}>
+									<ServiceCard
+										service={service}
+										onClick={() => handleServiceClick(service.id)}
+									/>
+								</SwiperSlide>
+							))}
+						</Swiper>
+					</div>
+					{/* Grid layout for medium and larger screens */}
+					<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-8 lg:gap-6">
+						{services.map((service, index) => (
+							<motion.div
+								key={service.id}
+								initial={{ opacity: 0, y: 50 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{
+									duration: 0.5,
+									delay: index * 0.1,
+								}}
+								whileHover={{ scale: 1.05 }}
+							>
+								<ServiceCard
+									service={service}
+									onClick={() => handleServiceClick(service.id)}
+								/>
+							</motion.div>
+						))}
+					</div>
+				</motion.div>
 				{/* Flex container to align flyers on the left and services on the right */}
-				<div className="flex flex-col lg:flex-row justify-evenly items-start gap-8">
+				<div className="flex flex-col sm:mt-0 mt-10 sm:mb-0 -mb-16 lg:flex-row justify-evenly items-start gap-8">
 					{/* Flyers Section - left side */}
 					<motion.div
 						className="w-full lg:hidden"
@@ -94,61 +150,6 @@ const ServicesSection = () => {
 						transition={{ duration: 0.7 }}
 					>
 						<FlyersSection />
-					</motion.div>
-					{/* Services Section - right side */}
-					<motion.div
-						className="w-full lg:w-2/2"
-						initial={{ x: 100 }}
-						animate={{ x: 0 }}
-						transition={{ duration: 0.7 }}
-					>
-						{/* Swiper for small screens */}
-						<div className="block md:hidden h-full">
-							<Swiper
-								modules={[Pagination, Autoplay]}
-								autoplay={{
-									delay: 3000,
-									disableOnInteraction: false,
-								}}
-								pagination={{
-									clickable: true,
-									dynamicBullets: true,
-								}}
-								spaceBetween={60}
-								loop={true}
-								slidesPerView={1}
-								className="w-full custom-swiper"
-							>
-								{services.map((service) => (
-									<SwiperSlide key={service.id}>
-										<ServiceCard
-											service={service}
-											onClick={() => handleServiceClick(service.id)}
-										/>
-									</SwiperSlide>
-								))}
-							</Swiper>
-						</div>
-						{/* Grid layout for medium and larger screens */}
-						<div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-8 lg:gap-6">
-							{services.map((service, index) => (
-								<motion.div
-									key={service.id}
-									initial={{ opacity: 0, y: 50 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{
-										duration: 0.5,
-										delay: index * 0.1,
-									}}
-									whileHover={{ scale: 1.05 }}
-								>
-									<ServiceCard
-										service={service}
-										onClick={() => handleServiceClick(service.id)}
-									/>
-								</motion.div>
-							))}
-						</div>
 					</motion.div>
 				</div>
 			</div>
