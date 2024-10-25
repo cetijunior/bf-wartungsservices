@@ -1,5 +1,3 @@
-// src/components/layout/BackgroundIcons.jsx
-
 import {
 	FiSun,
 	FiTool,
@@ -12,6 +10,7 @@ import {
 import { WiSnowflakeCold } from "react-icons/wi";
 import { motion } from "framer-motion";
 
+// Services with their icons
 const services = [
 	{ id: 1, title: "Winterdienst", icon: WiSnowflakeCold },
 	{ id: 2, title: "Hausreinigung", icon: FiFeather },
@@ -23,40 +22,57 @@ const services = [
 	{ id: 8, title: "Gartenarbeiten", icon: FiScissors },
 ];
 
-const gridSize = 10; // Defines a 10x10 grid
+// Total icons and screen divisions
+const totalIcons = 15; // Number of icons to show
+const screenZones = 4; // Divide the screen into 4x4 zones
 
 const BackgroundIcons = () => {
-	// Create grid-based positions
-	const gridPositions = [];
-	for (let i = 0; i < gridSize; i++) {
-		for (let j = 0; j < gridSize; j++) {
-			gridPositions.push({
-				top: `${(i / gridSize) * 100}%`,
-				left: `${(j / gridSize) * 100}%`,
-			});
-		}
-	}
+	// Helper to generate random values within a range
+	const randomInRange = (min, max) => Math.random() * (max - min) + min;
 
-	// Shuffle grid positions to make it more dynamic
-	const shuffledGridPositions = gridPositions.sort(() => Math.random() - 0.5);
+	// Generate random positions, excluding the center area
+	const generateRandomPosition = () => {
+		let top, left;
 
-	const iconInstances = services.flatMap((service, serviceIndex) => {
-		const IconComponent = service.icon;
+		do {
+			top = `${randomInRange(5, 95)}%`; // Avoid top/bottom edges
+			left = `${randomInRange(5, 95)}%`; // Avoid left/right edges
+		} while (
+			parseFloat(top) > 40 &&
+			parseFloat(top) < 60 &&
+			parseFloat(left) > 40 &&
+			parseFloat(left) < 60
+		); // Avoid the center area
 
-		// Position each icon in the shuffled grid without overlap
-		return Array.from({ length: 3 }, (_, iconIndex) => {
-			const positionIndex =
-				(serviceIndex * 3 + iconIndex) % shuffledGridPositions.length;
-			const position = shuffledGridPositions[positionIndex];
+		return { top, left };
+	};
 
-			return {
-				icon: IconComponent,
-				key: `${service.id}-${iconIndex}-${Math.random()}`,
-				top: position.top,
-				left: position.left,
-				rotationSpeed: Math.random() * 10 + 10, // Random speed between 10s and 20s
-			};
-		});
+	// Generate icon instances with special cases for variation
+	const iconInstances = Array.from({ length: totalIcons }, (_, index) => {
+		const serviceIndex = index % services.length;
+		const IconComponent = services[serviceIndex].icon;
+		const randomPosition = generateRandomPosition();
+
+		// Define special cases for some icons
+		const isSpecialIcon = serviceIndex % 3 === 0; // Every third icon is special
+		const size = isSpecialIcon ? randomInRange(24, 40) : randomInRange(16, 24); // Larger size for special icons
+		const rotationSpeed = isSpecialIcon
+			? randomInRange(5, 15) // Slower for special icons
+			: randomInRange(10, 20); // Faster for regular icons
+
+		// Random color based on special status
+		const color = isSpecialIcon ? "text-red-600" : "text-red-600";
+
+		return {
+			icon: IconComponent,
+			key: `${services[serviceIndex].id}-${index}`,
+			top: randomPosition.top,
+			left: randomPosition.left,
+			size,
+			color,
+			rotationSpeed,
+			isSpecialIcon,
+		};
 	});
 
 	return (
@@ -67,11 +83,13 @@ const BackgroundIcons = () => {
 					return (
 						<motion.div
 							key={instance.key}
-							className="absolute text-red-600"
+							className={`absolute ${instance.color} ${
+								instance.isSpecialIcon ? "animate-pulse" : ""
+							}`}
 							style={{
 								top: instance.top,
 								left: instance.left,
-								fontSize: `20px`,
+								fontSize: `${instance.size}px`,
 							}}
 							animate={{ rotate: 360 }}
 							transition={{
