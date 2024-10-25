@@ -24,26 +24,51 @@ const services = [
 
 // Total icons and screen divisions
 const totalIcons = 15; // Number of icons to show
-const screenZones = 4; // Divide the screen into 4x4 zones
+const minDistance = 10; // Minimum distance between icons in percentage points
 
 const BackgroundIcons = () => {
 	// Helper to generate random values within a range
 	const randomInRange = (min, max) => Math.random() * (max - min) + min;
 
-	// Generate random positions, excluding the center area
-	const generateRandomPosition = () => {
+	// Store already used positions
+	const usedPositions = [];
+
+	// Check if a new position is too close to existing positions
+	const isTooClose = (top, left) => {
+		for (const pos of usedPositions) {
+			const distance = Math.sqrt(
+				Math.pow(parseFloat(top) - parseFloat(pos.top), 2) +
+					Math.pow(parseFloat(left) - parseFloat(pos.left), 2)
+			);
+			if (distance < minDistance) {
+				return true;
+			}
+		}
+		return false;
+	};
+
+	// Generate random positions, excluding the center area and ensuring distance
+	const generateValidPosition = () => {
 		let top, left;
+		let attempts = 0;
 
 		do {
 			top = `${randomInRange(5, 95)}%`; // Avoid top/bottom edges
 			left = `${randomInRange(5, 95)}%`; // Avoid left/right edges
-		} while (
-			parseFloat(top) > 40 &&
-			parseFloat(top) < 60 &&
-			parseFloat(left) > 40 &&
-			parseFloat(left) < 60
-		); // Avoid the center area
+			attempts++;
 
+			// Break after too many attempts to avoid infinite loops
+			if (attempts > 100) break;
+		} while (
+			(parseFloat(top) > 40 &&
+				parseFloat(top) < 60 &&
+				parseFloat(left) > 40 &&
+				parseFloat(left) < 60) || // Avoid the center area
+			isTooClose(top, left) // Check if too close to other icons
+		);
+
+		// Store the valid position
+		usedPositions.push({ top, left });
 		return { top, left };
 	};
 
@@ -51,7 +76,7 @@ const BackgroundIcons = () => {
 	const iconInstances = Array.from({ length: totalIcons }, (_, index) => {
 		const serviceIndex = index % services.length;
 		const IconComponent = services[serviceIndex].icon;
-		const randomPosition = generateRandomPosition();
+		const validPosition = generateValidPosition();
 
 		// Define special cases for some icons
 		const isSpecialIcon = serviceIndex % 3 === 0; // Every third icon is special
@@ -66,8 +91,8 @@ const BackgroundIcons = () => {
 		return {
 			icon: IconComponent,
 			key: `${services[serviceIndex].id}-${index}`,
-			top: randomPosition.top,
-			left: randomPosition.left,
+			top: validPosition.top,
+			left: validPosition.left,
 			size,
 			color,
 			rotationSpeed,

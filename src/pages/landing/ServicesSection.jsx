@@ -141,7 +141,7 @@ const ServicesSection = () => {
 					</div>
 				</motion.div>
 				{/* Flex container to align flyers on the left and services on the right */}
-				<div className="flex flex-col sm:mt-0 mt-10 sm:mb-0 -mb-16 lg:flex-row justify-evenly items-start gap-8">
+				<div className="flex flex-col sm:mt-10 mt-10 sm:-mb-16 -mb-16 lg:flex-row justify-evenly items-start gap-8">
 					{/* Flyers Section - left side */}
 					<motion.div
 						className="w-full lg:hidden"
